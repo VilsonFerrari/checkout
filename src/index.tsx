@@ -1,13 +1,23 @@
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import { Provider } from 'react-redux';
 import App from './App';
+import fruitsReducer from './reducers/fruits_reducer';
 import reportWebVitals from './reportWebVitals';
 
+const rootReducer = combineReducers({
+  fruits: fruitsReducer.reducer
+});
+
+const store = configureStore({
+  reducer: rootReducer
+});
+
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
